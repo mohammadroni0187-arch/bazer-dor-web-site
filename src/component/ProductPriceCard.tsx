@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React from 'react';
+
 interface Product{
   id:number;
   slug: string;

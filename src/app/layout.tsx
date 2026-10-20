@@ -44,7 +44,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
           </main>
         <Footer/>
-        <ToastContainer/>
+        <ToastContainer
+        position="top-center"
+          autoClose={2000}/>
         </body>
     </html>
   );

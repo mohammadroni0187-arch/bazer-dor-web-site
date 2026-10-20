@@ -1,7 +1,12 @@
 
 
 import Link from "next/link";
-import React from "react";
+
+interface Navs{
+  id:string;
+  icon:string;
+  nameBn:string
+}
 
 const Navber = async () => {
   const res = await fetch(
@@ -14,7 +19,7 @@ const Navber = async () => {
     <nav className="border-b border-gray-100 bg-white">
       <div
         className="flex mx-auto max-w-7xl gap-1 overflow-x-auto px-2 py-2 scrollbar-hide sm:gap-3 sm:justify-center sm:overflow-x-visible lg:gap-2">
-        {data.map((nav: any) => (
+        {data.map((nav: Navs) => (
           <Link
             key={nav.id}
             href={`/category/${nav.id}`}

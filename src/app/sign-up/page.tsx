@@ -1,6 +1,6 @@
 "use client";
 
-import { authClient } from "@/lib/auth-client";
+import { authClient, signUp } from "@/lib/auth-client";
 import {Description,FieldError,FieldGroup,Fieldset,Form,Input,Label,TextField,} from "@heroui/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -28,10 +28,11 @@ const SignUp = () => {
     }
 
     const { data: signUpData, error } =
-      await authClient.signUp.email({
+      await signUp.email({
         name: data.name,
         email: data.email,
         password: data.password,
+        image: data.image || undefined,
         callbackURL: "/",
       });
 
@@ -226,8 +227,6 @@ const SignUp = () => {
               </button>
 
             </div>
-
-            {/* Sign In */}
             <p className="mt-4 w-full text-center text-xs text-gray-600">
               অ্যাকাউন্ট আছে?{" "}
               <Link
@@ -241,8 +240,6 @@ const SignUp = () => {
 
           </Fieldset>
         </Form>
-
-        {/* Back Home */}
         <Link
           href="/"
           className="mt-5 block text-center text-xs text-gray-400 hover:text-green-600"

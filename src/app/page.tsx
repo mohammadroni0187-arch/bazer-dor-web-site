@@ -1,8 +1,10 @@
 import AllProduct from "@/component/AllProduct";
+import DateDisplay from "@/component/DateDisplay";
 import ProduectPriceRose from "@/component/section/sectionA/page";
 import ProducetPriceDown from "@/component/section/sectionB/page";
 import Image from "next/image";
 import Link from "next/link";
+
 
 export default function Home() {
   return (
@@ -13,7 +15,7 @@ export default function Home() {
 
          
           <div className="mb-3 inline-flex rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700 sm:text-sm">
-            সোমবার, ২০ অক্টোবর, ২০২৬
+            <DateDisplay/>
           </div>
 
           

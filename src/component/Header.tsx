@@ -1,12 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import UserInfo from "./UserInfo";
+import DateDisplay from "./DateDisplay";
 
 const Header = () => {
 
-//   const date = new Date().toLocaleDateString("bn-BD",{
-//   dateStyle:"full"
-// });
 
   return (
      <header className="border-b border-gray-100 bg-white">
@@ -28,7 +26,7 @@ const Header = () => {
             </span>
 
             <span className="text-[9px] text-gray-500 sm:text-[10px] lg:text-xs">
-             29/5/2026
+             <DateDisplay/>
             </span>
           </div>
         </Link>
