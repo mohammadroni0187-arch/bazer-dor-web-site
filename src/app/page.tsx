@@ -1,10 +1,13 @@
+import AllProduct from "@/component/AllProduct";
+import ProduectPriceRose from "@/component/section/sectionA/page";
+import ProducetPriceDown from "@/component/section/sectionB/page";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <main className="border-gray-200 bg-[#f5f8f5] px-4 py-2 mt-3 sm:px-5 md:px-6">
-      <section className="flex flex-col justify-between mx-auto max-w-7xl items-center overflow-hidden rounded-3xl border border-gray-200 bg-[#fbfdfb] px-5 py-5 sm:px-8 sm:py-7 md:flex-row md:px-10 lg:px-12 ">
+      <section className="flex flex-col justify-between mx-auto max-w-[1400px] items-center overflow-hidden rounded-3xl border border-gray-200 bg-[#fbfdfb] px-5 py-5 sm:px-8 sm:py-7 md:flex-row md:px-10 lg:px-12 ">
         
         <div className="w-full md:w-[65%] lg:w-[60%]">
 
@@ -41,6 +44,10 @@ export default function Home() {
             className=" h-auto w-48 sm:w-56 md:w-60 lg:w-72"/>
         </div>
       </section>
+      <ProduectPriceRose />
+
+        <ProducetPriceDown />
+        <AllProduct/>
     </main>
   );
 }

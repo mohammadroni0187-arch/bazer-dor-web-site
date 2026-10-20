@@ -1,6 +1,26 @@
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
 
+interface Product  {
+  id: number;
+  slug: string;
+  nameBn: string;
+  category: string;
+  categoryNameBn: string;
+  categoryIcon: string;
+  unit: string;
+  image: string;
+  today: number;
+  yesterday: number;
+  lastWeek: number;
+  lastMonth: number;
+  change: {
+    dir: "up" | "down";
+    pct: number;
+  };
+};
+
+
 const API_URL = "https://openapi.programming-hero.com/api/bazardor/products";
 
 
@@ -68,7 +88,7 @@ const Marquee = async () => {
         duration={25}
         className="flex items-center"
       >
-        {products.map((product: any) => {
+        {products.map((product:Product) => {
           const direction = product.change?.dir;
           const percentage = product.change?.pct ?? 0;
 
@@ -82,7 +102,7 @@ const Marquee = async () => {
             >
         
               <span className="font-medium text-gray-800">
-                 {product.nameBn}
+               {product.image}  {product.nameBn}
               </span>
 
               <span className="ml-2 text-gray-700">
