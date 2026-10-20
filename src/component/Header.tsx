@@ -4,13 +4,13 @@ import UserInfo from "./UserInfo";
 
 const Header = () => {
 
-  const date = new Date().toLocaleDateString("bn-BD",{
-  dateStyle:"full"
-});
+//   const date = new Date().toLocaleDateString("bn-BD",{
+//   dateStyle:"full"
+// });
 
   return (
      <header className="border-b border-gray-100 bg-white">
-      <div className=" mx-auto flex max-w-6xl items-center justify-between px-3 py-3 sm:px-5 lg:px-6 lg:py-4 ">
+      <div className=" mx-auto flex max-w-7xl items-center justify-between px-3 py-3 sm:px-5 lg:px-6 lg:py-4 ">
     
         <Link href="/" className="flex items-center gap-2 sm:gap-3">
           <Image
@@ -28,7 +28,7 @@ const Header = () => {
             </span>
 
             <span className="text-[9px] text-gray-500 sm:text-[10px] lg:text-xs">
-             {date}
+             29/5/2026
             </span>
           </div>
         </Link>

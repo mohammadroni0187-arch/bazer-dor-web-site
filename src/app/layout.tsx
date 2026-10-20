@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
 import Header from "@/component/Header";
+import { ToastContainer } from "react-toastify";
+import Navber from "@/component/Navber";
+import { Suspense } from "react";
+import Marquee from "@/component/Marquee";
 
 const notoSerifBengali = Noto_Serif_Bengali({
   subsets: ["latin", "bengali"],
@@ -23,9 +27,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         
         <Header/>
+        <Suspense
+          fallback={
+            <div className="mx-auto max-w-6xl px-4 py-3">
+              <div className="h-10 animate-pulse rounded-lg bg-gray-200" />
+            </div>
+          }
+        >
+          <Navber />
+        </Suspense>
+        <Marquee/>
+          <main>
 
         {children}
+
+          </main>
         
+        <ToastContainer/>
         </body>
     </html>
   );

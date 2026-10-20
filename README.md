@@ -15,3 +15,6 @@
 - Github
 - MongoDB
 - Mongodb_Adapter
+- toastify
+- React-Icons
+- React-Marquee-text
