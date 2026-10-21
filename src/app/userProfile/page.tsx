@@ -1,6 +1,7 @@
 "use client";
 
 import { authClient, signOut } from "@/lib/auth-client";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import {
@@ -38,14 +39,35 @@ const UserProfile = () => {
 
   if (isPending) {
     return (
-      <main className="min-h-screen bg-[#f4f6f5] px-4 py-12">
+      <main className="min-h-screen bg-[#f4f6f5] px-4 py-10 sm:py-12">
         <div className="mx-auto max-w-2xl animate-pulse space-y-6">
           <div className="space-y-2">
             <div className="h-7 w-40 rounded bg-gray-200" />
             <div className="h-4 w-60 rounded bg-gray-200" />
           </div>
-          <div className="h-28 w-full rounded-2xl bg-white p-6" />
-          <div className="h-64 w-full rounded-2xl bg-white p-6" />
+          {/* Card 1 Skeleton */}
+          <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-2xl bg-gray-200 shrink-0" />
+              <div className="space-y-2">
+                <div className="h-5 w-32 rounded bg-gray-200" />
+                <div className="h-4 w-44 rounded bg-gray-200" />
+                <div className="flex gap-2 pt-1">
+                  <div className="h-6 w-20 rounded bg-gray-200" />
+                  <div className="h-6 w-24 rounded bg-gray-200" />
+                </div>
+              </div>
+            </div>
+            <div className="h-9 w-24 rounded-xl bg-gray-200" />
+          </div>
+          {/* Card 2 Skeleton */}
+          <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm space-y-4">
+            <div className="h-5 w-20 rounded bg-gray-200" />
+            <div className="h-11 w-full rounded-xl bg-gray-200" />
+            <div className="h-11 w-full rounded-xl bg-gray-200" />
+            <div className="h-11 w-full rounded-xl bg-gray-200" />
+            <div className="h-11 w-full rounded-xl bg-gray-200 mt-2" />
+          </div>
         </div>
       </main>
     );
@@ -73,7 +95,6 @@ const UserProfile = () => {
     );
   }
 
-  // Emoji and Cartoon Avatar Presets
   const emojiPresets = [
     "https://api.dicebear.com/7.x/fun-emoji/svg?seed=Happy",
     "https://api.dicebear.com/7.x/fun-emoji/svg?seed=Cool",
@@ -201,7 +222,6 @@ const UserProfile = () => {
                   </div>
                 )}
 
-                {/* Quick Camera Upload Badge */}
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
@@ -271,7 +291,6 @@ const UserProfile = () => {
             </button>
           </div>
 
-          {/* Emoji / Avatar Presets */}
           <div className="mt-5 border-t border-gray-100 pt-4">
             <label className="mb-2.5 block text-xs font-semibold text-gray-700">
               বা দ্রুত পছন্দসই ইমোজি / অবতার নির্বাচন করুন:
@@ -303,7 +322,6 @@ const UserProfile = () => {
           </div>
         </section>
 
-        {/* Card 2: Update Info */}
         <section className="mt-6 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm sm:p-6">
           <h3 className="text-base font-bold text-gray-900 mb-4">
             তথ্য

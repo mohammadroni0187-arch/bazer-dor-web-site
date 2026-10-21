@@ -15,7 +15,6 @@ const UserInfo = () => {
   const user = session?.user;
   const hasValidImage = Boolean(user?.image && failedSrc !== user.image);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (

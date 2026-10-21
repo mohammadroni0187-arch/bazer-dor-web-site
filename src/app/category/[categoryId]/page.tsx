@@ -1,5 +1,6 @@
 import CategoryProducts from '@/component/CategoryProducts';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import React from 'react';
 
 interface Product {
@@ -67,6 +68,14 @@ const ProductCategory = async ({ params, searchParams }: PageProps) => {
     ? data
     : data.data || [];
 
+    const categoryProducts = products.filter(
+  (item) => item.category === categoryId
+);
+
+if (categoryProducts.length === 0) {
+  notFound();
+}
+
   if (products.length === 0) {
     return (
       <div className="mx-auto max-w-6xl px-4 py-20 text-center">
@@ -90,8 +99,13 @@ const ProductCategory = async ({ params, searchParams }: PageProps) => {
     );
   }
 
-  const categoryName = products[0]?.categoryNameBn || categoryId;
-  const categoryIcon = products[0]?.categoryIcon || "🛒";
+ const categoryName =
+  categoryProducts[0]?.categoryNameBn || categoryId;
+
+const categoryIcon =
+  categoryProducts[0]?.categoryIcon || "🛒";
+
+
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-8">
@@ -111,7 +125,10 @@ const ProductCategory = async ({ params, searchParams }: PageProps) => {
         </div>
       </div>
 
-      <CategoryProducts products={products} initialSort={initialSort} />
+     <CategoryProducts
+  products={categoryProducts}
+  initialSort={initialSort}
+/>
     </main>
   );
 };

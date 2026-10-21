@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 export const instant = false;
 
-type Product = {
+interface Product  {
   id: number;
   slug: string;
   nameBn: string;
@@ -84,7 +84,6 @@ const ProductDetailsPage =async  ({params}:Props) => {
 
   const product = products.find(
     (item) => item.slug === productDetails);
-    console.log(product)
 
   if (!product) {
     notFound();
