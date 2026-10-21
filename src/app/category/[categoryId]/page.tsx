@@ -1,8 +1,8 @@
-import ProductPriceCard from '@/component/ProductPriceCard';
+import CategoryProducts from '@/component/CategoryProducts';
 import Link from 'next/link';
 import React from 'react';
 
-interface Product  {
+interface Product {
   id: number;
   slug: string;
   nameBn: string;
@@ -19,29 +19,34 @@ interface Product  {
     dir: "up" | "down";
     pct: number;
   };
-};
+}
 
-
-interface PageProps  {
+interface PageProps {
   params: Promise<{
     categoryId: string;
   }>;
-};
+  searchParams?: Promise<{
+    sort?: string;
+  }>;
+}
 
 export const instant = false;
 
-const ProductCategory =async ({params}:PageProps) => {
+const ProductCategory = async ({ params, searchParams }: PageProps) => {
+  const { categoryId } = await params;
+  const resolvedSearchParams = searchParams ? await searchParams : undefined;
+  const initialSort = (resolvedSearchParams?.sort as "default" | "low" | "high") || "default";
 
-  const {categoryId} = await params;
- console.log(categoryId)
-  const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products?category=${categoryId}`,
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/bazardor/products?category=${categoryId}`,
     {
       next: {
         revalidate: 300,
       },
     }
   );
-   if (!res.ok) {
+
+  if (!res.ok) {
     return (
       <div className="mx-auto max-w-6xl px-4 py-20 text-center">
         <h1 className="text-3xl font-bold">Category পাওয়া যায়নি</h1>
@@ -58,7 +63,7 @@ const ProductCategory =async ({params}:PageProps) => {
 
   const data = await res.json();
 
-  const products = Array.isArray(data)
+  const products: Product[] = Array.isArray(data)
     ? data
     : data.data || [];
 
@@ -84,13 +89,12 @@ const ProductCategory =async ({params}:PageProps) => {
       </div>
     );
   }
-  const categoryName = products[0]?.categoryNameBn || categoryId;
 
+  const categoryName = products[0]?.categoryNameBn || categoryId;
   const categoryIcon = products[0]?.categoryIcon || "🛒";
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-8">
-
       <div className="mb-8 flex items-center gap-3">
         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 text-2xl">
           {categoryIcon}
@@ -106,25 +110,8 @@ const ProductCategory =async ({params}:PageProps) => {
           </p>
         </div>
       </div>
-      <div className="mb-5 flex justify-end">
-        <select
-          className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm outline-none"
-          defaultValue="default"
-        >
-          <option value="default">সাজান: ডিফল্ট</option>
-          <option value="low">দাম: কম থেকে বেশি</option>
-          <option value="high">দাম: বেশি থেকে কম</option>
-        </select>
-      </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((product: Product) => (
-          <ProductPriceCard
-            key={product.id}
-            product={product}
-          />
-        ))}
-      </div>
 
+      <CategoryProducts products={products} initialSort={initialSort} />
     </main>
   );
 };
