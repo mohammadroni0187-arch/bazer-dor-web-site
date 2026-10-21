@@ -6,6 +6,7 @@ const client = new MongoClient(process.env.BETTER_AUTH_DB_URI as string);
 const db = client.db("Bazerdor-Website");
 
 export const auth = betterAuth({
+secret: process.env.BETTER_AUTH_SECRET,
 
    emailAndPassword: { 
     enabled: true, 
