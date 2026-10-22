@@ -1,7 +1,6 @@
 "use client";
 
 import { authClient, signOut } from "@/lib/auth-client";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import {

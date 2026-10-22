@@ -13,20 +13,13 @@ export const auth = betterAuth({
   trustedOrigins: [
     "http://localhost:3000",
      "https://bazer-dor-web-site.vercel.app",
-    "https://bazer-dor-web-site-5irzi4pfw-md-roni2.vercel.app",
   ],
   
 
    emailAndPassword: { 
     enabled: true, 
   }, 
-   account: {
-    accountLinking: {
-      enabled: true,
-      trustedProviders: ["google", "github"],
-      disableImplicitLinking: false,
-    },
-  },
+ 
   socialProviders: {
         google: { 
             clientId: process.env.BETTER_AUTH_GOOGLE_ID as string, 
