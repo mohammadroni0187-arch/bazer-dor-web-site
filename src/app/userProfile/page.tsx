@@ -26,7 +26,7 @@ const UserProfile = () => {
 
   const user = session?.user;
 
-  // Resolve current values from local edits or session user
+  
   const currentName = name !== null ? name : user?.name || "";
   const displayImage = image !== null ? image : user?.image || "";
   const hasValidImage = Boolean(displayImage && failedSrc !== displayImage);
@@ -44,7 +44,7 @@ const UserProfile = () => {
             <div className="h-7 w-40 rounded bg-gray-200" />
             <div className="h-4 w-60 rounded bg-gray-200" />
           </div>
-          {/* Card 1 Skeleton */}
+          
           <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-2xl bg-gray-200 shrink-0" />
@@ -59,7 +59,7 @@ const UserProfile = () => {
             </div>
             <div className="h-9 w-24 rounded-xl bg-gray-200" />
           </div>
-          {/* Card 2 Skeleton */}
+         
           <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm space-y-4">
             <div className="h-5 w-20 rounded bg-gray-200" />
             <div className="h-11 w-full rounded-xl bg-gray-200" />
@@ -138,7 +138,7 @@ const UserProfile = () => {
     setFailedSrc(null);
   };
 
-  // Remove photo and revert to initial avatar
+  
   const handleRemoveImage = () => {
     setImage("");
     setFailedSrc(null);
@@ -192,7 +192,7 @@ const UserProfile = () => {
   return (
     <main className="min-h-screen bg-[#f4f6f5] px-4 py-10 sm:py-12">
       <div className="mx-auto max-w-2xl">
-        {/* Title Header */}
+    
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-gray-900 sm:text-2xl">
             আমার প্রোফাইল
@@ -202,7 +202,7 @@ const UserProfile = () => {
           </p>
         </div>
 
-        {/* Card 1: User Info & Sign Out */}
+     
         <section className="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm sm:p-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-4">
