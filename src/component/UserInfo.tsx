@@ -2,14 +2,17 @@
 
 import { authClient, signOut } from "@/lib/auth-client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { FiLogOut, FiUser } from "react-icons/fi";
 import { toast } from "react-toastify";
 
 const UserInfo = () => {
+   const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
   const [open, setOpen] = useState(false);
   const [failedSrc, setFailedSrc] = useState<string | null>(null);
+  const [signingOut, setSigningOut] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const user = session?.user;
@@ -31,14 +34,31 @@ const UserInfo = () => {
     };
   }, []);
 
-  const handleSignOut = async () => {
+   const handleSignOut = async () => {
+    if (signingOut) return;
+
+    setSigningOut(true);
+
     try {
-      await signOut();
-      setOpen(false);
-      toast.success("সফলভাবে সাইন আউট হয়েছে!");
+      await signOut({
+        fetchOptions: {
+          onSuccess: () => {
+            setOpen(false);
+            toast.success("সফলভাবে সাইন আউট হয়েছে!");
+            router.replace("/");
+            router.refresh();
+          },
+          onError: (ctx) => {
+            console.error("Sign out failed:", ctx.error);
+            toast.error("সাইন আউট করতে সমস্যা হয়েছে!");
+          },
+        },
+      });
     } catch (error) {
       console.error("Sign out failed:", error);
       toast.error("সাইন আউট করতে সমস্যা হয়েছে!");
+    } finally {
+      setSigningOut(false);
     }
   };
 
